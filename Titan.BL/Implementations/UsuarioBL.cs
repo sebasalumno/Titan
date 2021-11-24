@@ -22,6 +22,9 @@ namespace Titan.BL.Implementations
             this.passwordGenerator = passwordGenerator;
             this.mapper = mapper;
             }
+        /*
+         * Este metodo encripta la contraseña y pasa el usuario que se ha comprobado si existe en la bd a un usuarioDTO para devolver
+         */
         public UsuarioDTO Login(UsuarioDTO usuarioDTO)
         {
             usuarioDTO.Password = passwordGenerator.Hash(usuarioDTO.Password);
@@ -37,7 +40,9 @@ namespace Titan.BL.Implementations
 
         }
 
-
+            /*
+             * Este metodo encripta la contraseña del nuevo usuario y comprueba que el usuario no exista en la base de datos
+             */
             public UsuarioDTO Create(UsuarioDTO usuarioDTO)
             {
             usuarioDTO.Password = passwordGenerator.Hash(usuarioDTO.Password);

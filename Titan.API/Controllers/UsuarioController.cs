@@ -28,6 +28,9 @@ namespace Titan.API.Controllers
         [HttpPost]
         [EnableCors("CorsPolicy")]
         [Route ("Login")]
+        /*
+         * Este metodo inicia el proceso de login, para comprobar que el usuario esta en la base de datos
+         */
         public ActionResult<UsuarioDTO> Login(UsuarioDTO usuarioDTO)
         {
             UsuarioDTO usuario;
@@ -41,6 +44,9 @@ namespace Titan.API.Controllers
 
         }
         [HttpPost]
+        /*
+         * Este metodo inicia el proceso para crear un usuario e insertarlo en la base de datos
+         */
         public ActionResult<UsuarioDTO> Create(UsuarioDTO usuarioDTO)
         {
 
