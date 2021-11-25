@@ -1,4 +1,4 @@
-# Titan
+# Titan https://img.shields.io/appveyor/build/sebasalumno/titan
 Api ASP NET CORE 3.1 de la aplicación principal
 
 Creado en la rama master.
