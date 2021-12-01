@@ -16,6 +16,9 @@ namespace Titan.Core.Security
             this.Configuration = Configuration;
 
         }
+        /*
+         * Este metodo encripta la contraseña del usuario 
+         */
         public string Hash(string password)
         {
             // generate a 128-bit salt using a cryptographically strong random sequence of nonzero values
