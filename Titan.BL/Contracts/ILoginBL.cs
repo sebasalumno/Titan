@@ -7,6 +7,7 @@ namespace Titan.BL.Contracts
 {
    public interface ILoginBL
     {
-        public bool Login(LoginDTO loginDTO);
+        public LoginDTO Login(LoginDTO loginDTO);
+        public LoginDTO Create(LoginDTO loginDTO);
     }
 }

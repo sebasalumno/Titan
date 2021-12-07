@@ -6,8 +6,10 @@ namespace Titan.Core.DTO
 {
     public class LoginDTO
     {
-        public string email{ get; set; }
+        public int Id { get; set; }
+        public String Email{ get; set; }
 
-        public int Password { get; set; }
+        public String Password { get; set; }
+        public String Name { get; set; }
     }
 }

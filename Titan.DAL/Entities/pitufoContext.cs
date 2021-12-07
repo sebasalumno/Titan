@@ -10,6 +10,8 @@ namespace Titan.DAL.Entities
     {
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Provincia> Provincias { get; set; }
+        public DbSet<Empresa> Empresas { get; set; }
+
         public pitufoContext()
         {
         }

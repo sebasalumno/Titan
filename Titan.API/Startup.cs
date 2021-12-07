@@ -65,6 +65,8 @@ namespace Titan.API
 
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
+            services.AddScoped<ILoginRepository, LoginRepository>();
+
             services.AddScoped<IPasswordGenerator, PasswordGenerator>();
 
             services.AddDbContext<pitufoContext>(opts => opts.UseMySql(Configuration["ConnectionString:PitufoDB"],

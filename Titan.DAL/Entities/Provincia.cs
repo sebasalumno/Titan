@@ -8,9 +8,9 @@ namespace Titan.DAL.Entities
    public class Provincia
     {
         [Key]
-        public int id { get; set; }
+        public int Id { get; set; }
 
-        public String nombre { get; set; }
+        public String Nombre { get; set; }
 
     }
 }
