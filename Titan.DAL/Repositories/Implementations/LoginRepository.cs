@@ -33,9 +33,33 @@ namespace Titan.DAL.Repositories.Implementations
          */
         public bool Exist(Empresa empresa)
         {
-            return _context.Empresas.Any(u => u.Email == empresa.Email || u.Name == empresa.Name);
+            return _context.Empresas.Any(u => u.Email == empresa.Email );
         }
 
+        public Empresa Obtain(Empresa empresa)
+        {
+            return _context.Empresas.FirstOrDefault(e => e.Id == empresa.Id);
+        }
 
+        public List<Empresa> ObtainAll()
+        {
+            return _context.Empresas.ToList();
+        }
+
+        public bool Delete(Empresa empresa)
+        {
+            _context.Empresas.Remove(empresa);
+            _context.SaveChanges();
+            return true;
+            
+        }
+
+        public Empresa Update(Empresa empresa)
+        {
+            var update = _context.Empresas.Update(empresa);
+            _context.SaveChanges();
+            return update.Entity;
+
+        }
     }
 }

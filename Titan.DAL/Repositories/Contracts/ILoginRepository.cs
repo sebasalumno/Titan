@@ -9,6 +9,10 @@ namespace Titan.DAL.Repositories.Contracts
     {
         Empresa Login(Empresa u);
         Empresa Create(Empresa usuario);
+        Empresa Obtain(Empresa empresa);
+        List<Empresa> ObtainAll();
+        bool Delete(Empresa empresa);
+        Empresa Update(Empresa empresa);
         bool Exist(Empresa u);
     }
 }
