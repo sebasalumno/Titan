@@ -46,10 +46,10 @@ namespace Titan.BL.Implementations
 
         }
 
-        EmpresaDTO IEmpresaBL.Login(EmpresaDTO loginDTO)
+        EmpresaDTO IEmpresaBL.Login(LoginDTO loginDTO)
         {
             loginDTO.Password = passwordGenerator.Hash(loginDTO.Password);
-            var empresa = mapper.Map<EmpresaDTO, Empresa>(loginDTO);
+            var empresa = mapper.Map<LoginDTO, Empresa>(loginDTO);
 
 
 
