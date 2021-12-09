@@ -7,8 +7,7 @@ namespace Titan.DAL.Repositories.Contracts
 {
    public interface ILoginRepository
     {
-        Empresa Login(Empresa u);
-        Empresa Create(Empresa usuario);
+        Empresa Create(Empresa empresa);
         Empresa Obtain(Empresa empresa);
         List<Empresa> ObtainAll();
         bool Delete(Empresa empresa);

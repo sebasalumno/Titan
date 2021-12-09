@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Titan.BL.Contracts;
 using Titan.Core.DTO;
 
 namespace Titan.API.Controllers
@@ -12,10 +13,28 @@ namespace Titan.API.Controllers
     [ApiController]
     public class ProvinciaController : ControllerBase
     {
+        public IProvinciaBL provinciaBL { get; set; }
+        public ProvinciaController(IProvinciaBL provinciaBL)
+        {
+            this.provinciaBL = provinciaBL;
+        }
+        [HttpGet]
         public ActionResult<ProvinciaDTO> Get(int id)
         {
-            return null;
+            return Ok(provinciaBL.Get(id));
         }
-        
+        [HttpGet]
+        [Route("ObtainAll")]
+        public ActionResult<List<ProvinciaDTO>> GetAll()
+        {
+            return Ok(provinciaBL.GetAll());
+        }
+        [HttpPost]
+        [Route("Filter")]
+        public ActionResult<List<ProvinciaDTO>> Filter(ProvinciaCriteriaDTO criteriaDTO)
+        {
+            return Ok(provinciaBL.Filter(criteriaDTO));
+        }
+
     }
 }

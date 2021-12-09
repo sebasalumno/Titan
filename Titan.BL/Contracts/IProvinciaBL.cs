@@ -5,8 +5,10 @@ using Titan.Core.DTO;
 
 namespace Titan.BL.Contracts
 {
-    public interface IProvinciaController
+    public interface IProvinciaBL
     {
         public ProvinciaDTO Get(int id);
+        public List<ProvinciaDTO> GetAll();
+        public List<ProvinciaDTO> Filter( ProvinciaCriteriaDTO criteriaDTO);
     }
 }
