@@ -11,23 +11,23 @@ using Titan.DAL.Repositories.Implementations;
 
 namespace Titan.BL.Implementations
 {
-    public class LoginBL : ILoginBL
+    public class EmpresaBL : IEmpresaBL
     {
         public IPasswordGenerator passwordGenerator { get; set; }
         public ILoginRepository loginRepository { get; set; }
         public IMapper mapper { get; set; }
 
-        public LoginBL(ILoginRepository loginRepository, IPasswordGenerator passwordGenerator, IMapper mapper)
+        public EmpresaBL(ILoginRepository loginRepository, IPasswordGenerator passwordGenerator, IMapper mapper)
         {
             this.loginRepository = loginRepository;
             this.passwordGenerator = passwordGenerator;
             this.mapper = mapper;
         }
 
-        LoginDTO ILoginBL.Create(LoginDTO loginDTO)
+        EmpresaDTO IEmpresaBL.Create(EmpresaDTO loginDTO)
         {
             loginDTO.Password = passwordGenerator.Hash(loginDTO.Password);
-            var empresa = mapper.Map<LoginDTO, Empresa>(loginDTO);
+            var empresa = mapper.Map<EmpresaDTO, Empresa>(loginDTO);
 
 
 
@@ -35,7 +35,7 @@ namespace Titan.BL.Implementations
             {
 
 
-                var u = mapper.Map<Empresa, LoginDTO>(loginRepository.Create(empresa));
+                var u = mapper.Map<Empresa, EmpresaDTO>(loginRepository.Create(empresa));
                 u.Password = null;
                 return u;
 
@@ -46,10 +46,10 @@ namespace Titan.BL.Implementations
 
         }
 
-        LoginDTO ILoginBL.Login(LoginDTO loginDTO)
+        EmpresaDTO IEmpresaBL.Login(EmpresaDTO loginDTO)
         {
             loginDTO.Password = passwordGenerator.Hash(loginDTO.Password);
-            var empresa = mapper.Map<LoginDTO, Empresa>(loginDTO);
+            var empresa = mapper.Map<EmpresaDTO, Empresa>(loginDTO);
 
 
 
@@ -57,7 +57,7 @@ namespace Titan.BL.Implementations
             {
 
 
-                var u = mapper.Map<Empresa, LoginDTO>(loginRepository.Create(empresa));
+                var u = mapper.Map<Empresa, EmpresaDTO>(loginRepository.Create(empresa));
                 u.Password = null;
                 return u;
 

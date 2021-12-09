@@ -15,24 +15,24 @@ namespace Titan.API.Controllers
 
     public class EmpresaController : ControllerBase
     {
-        public ILoginBL LoginBL { get; set; }
-        public EmpresaController(ILoginBL loginBL)
+        public IEmpresaBL LoginBL { get; set; }
+        public EmpresaController(IEmpresaBL empresaBL)
         {
-            this.LoginBL = loginBL;
+            this.LoginBL = empresaBL;
         }
 
         [HttpPost]
         [Route("Login")]
-        public ActionResult<LoginDTO> Login(LoginDTO loginDTO)
+        public ActionResult<EmpresaDTO> Login(LoginDTO loginDTO)
         {
             return LoginBL.Login(loginDTO);
         }
 
         [HttpPost]
         [Route("Create")]
-        public ActionResult<LoginDTO> Create(LoginDTO loginDTO)
+        public ActionResult<EmpresaDTO> Create(EmpresaDTO empresaDTO)
         {
-            var usuario = LoginBL.Create(loginDTO);
+            var usuario = LoginBL.Create(empresaDTO);
             if (usuario != null)
             {
                 return Ok(usuario);

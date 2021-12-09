@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,7 @@ namespace Titan.DAL.Repositories.Implementations
          */
         public Usuario Login(Usuario usuario)
         {
-            return _context.Usuarios.FirstOrDefault(u => u.Email == usuario.Email && u.Password == usuario.Password);
+            return _context.Usuarios.Include(u => u.Provincia).FirstOrDefault(u => u.Email == usuario.Email && u.Password == usuario.Password);
             
         }
 

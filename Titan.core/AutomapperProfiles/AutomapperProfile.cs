@@ -13,8 +13,12 @@ namespace Titan.Core.AutomapperProfiles
         {
             CreateMap<UsuarioDTO, Usuario>();
             CreateMap<Usuario, UsuarioDTO>();
+            CreateMap<EmpresaDTO, Empresa>();
+            CreateMap<Empresa, EmpresaDTO>();
+            CreateMap<ProvinciaDTO, Provincia>();
+            CreateMap<Provincia, ProvinciaDTO>();
+            CreateMap<LoginDTO, Usuario>();
             CreateMap<LoginDTO, Empresa>();
-            CreateMap<Empresa, LoginDTO>();
         }
     }
 }

@@ -59,7 +59,7 @@ namespace Titan.API
 
             services.AddAutoMapper(cfg => cfg.AddProfile(new AutomapperProfile()));
 
-            services.AddScoped<ILoginBL, LoginBL>();
+            services.AddScoped<IEmpresaBL, EmpresaBL>();
 
             services.AddScoped<IUsuarioBL, UsuarioBL>();
 

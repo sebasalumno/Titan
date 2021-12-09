@@ -10,5 +10,7 @@ namespace Titan.Core.DTO
         public String Email { get; set; }
         public String Password { get; set; }
         public String Username { get; set; }
+        public int ProvinciaId { get; set; }
+        public ProvinciaDTO Provincia {get ;set ;}
     }
 }

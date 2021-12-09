@@ -8,7 +8,7 @@ namespace Titan.BL.Contracts
     public interface IUsuarioBL
     {
 
-        public UsuarioDTO Login(UsuarioDTO usuarioDTO);
+        public UsuarioDTO Login(LoginDTO loginDTO);
         public UsuarioDTO Create(UsuarioDTO usuarioDTO);
 
     }

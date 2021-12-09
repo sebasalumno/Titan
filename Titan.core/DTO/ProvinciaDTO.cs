@@ -4,9 +4,11 @@ using System.Text;
 
 namespace Titan.Core.DTO
 {
-   public class LoginDTO
+    public class ProvinciaDTO
     {
-        public String Email { get; set; }
-        public String Password { get; set; }
+        public int Id { get; set; }
+
+        public String Nombre { get; set; }
+
     }
 }

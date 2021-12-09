@@ -31,11 +31,11 @@ namespace Titan.API.Controllers
         /*
          * Este metodo inicia el proceso de login, para comprobar que el usuario esta en la base de datos
          */
-        public ActionResult<UsuarioDTO> Login(UsuarioDTO usuarioDTO)
+        public ActionResult<UsuarioDTO> Login(LoginDTO loginDTO)
         {
             UsuarioDTO usuario;
 
-            if ((usuario = usuarioBL.Login(usuarioDTO)) != null )
+            if ((usuario = usuarioBL.Login(loginDTO)) != null )
                 return Ok(usuario);
             else
                 return Unauthorized();
