@@ -1,24 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using Titan.DAL.Entities;
 
-namespace Titan.DAL.Entities
+namespace Titan.Core.DTO
 {
-   public class Ciclo
-   {
-        [Key]
-       
+   public class CicloDTO
+    {
         public int Id { get; set; }
         public string Name { get; set; }
-
         public int TipoCicloId { get; set; }
-        [ForeignKey("TipoCicloId")]
         public TipoCiclo TipoCiclo { get; set; }
-
         public int FamiliaId { get; set; }
-        [ForeignKey("FamiliaId")]
         public Familia Familia { get; set; }
 
     }

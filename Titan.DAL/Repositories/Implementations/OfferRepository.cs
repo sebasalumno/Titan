@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -42,7 +43,7 @@ namespace Titan.DAL.Repositories.Implementations
 
         public List<Offer> ObtainAll()
         {
-            return _context.Offers.ToList();
+            return _context.Offers.Include(u =>u.ciclo).Include(u => u.Empresa).ToList();
         }
 
         public Offer Update(Offer offer)

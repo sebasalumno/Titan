@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Titan.DAL.Entities;
 
 namespace Titan.DAL.Migrations
 {
     [DbContext(typeof(pitufoContext))]
-    partial class pitufoContextModelSnapshot : ModelSnapshot
+    [Migration("20211213220824_FixOffer")]
+    partial class FixOffer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -86,7 +88,7 @@ namespace Titan.DAL.Migrations
                     b.Property<string>("Descripcion")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("EmpresaId")
+                    b.Property<int>("Empresaid")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Fecha_Fin")
@@ -109,7 +111,7 @@ namespace Titan.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmpresaId");
+                    b.HasIndex("Empresaid");
 
                     b.HasIndex("Idciclo");
 
@@ -192,7 +194,7 @@ namespace Titan.DAL.Migrations
                 {
                     b.HasOne("Titan.DAL.Entities.Empresa", "Empresa")
                         .WithMany()
-                        .HasForeignKey("EmpresaId")
+                        .HasForeignKey("Empresaid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

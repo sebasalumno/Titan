@@ -44,6 +44,7 @@ namespace Titan.API.Controllers
 
         }
         [HttpPost]
+        [Route("Create")]
         /*
          * Este metodo inicia el proceso para crear un usuario e insertarlo en la base de datos
          */

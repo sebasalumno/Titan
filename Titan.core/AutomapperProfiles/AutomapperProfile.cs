@@ -20,6 +20,8 @@ namespace Titan.Core.AutomapperProfiles
             CreateMap<LoginDTO, Usuario>();
             CreateMap<LoginDTO, Empresa>();
             CreateMap<ProvinciaCriteriaDTO, Provincia >();
+            CreateMap<OfferDTO, Offer>();
+            CreateMap<Offer, OfferDTO>();
 
         }
     }
