@@ -53,7 +53,7 @@ namespace Titan.BL.Implementations
 
 
 
-            if (!loginRepository.Exist(empresa))
+            if (loginRepository.Exist(empresa))
             {
 
 

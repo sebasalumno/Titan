@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Titan.BL.Contracts;
 
 namespace Titan.API.Controllers
 {
@@ -11,6 +12,11 @@ namespace Titan.API.Controllers
     [ApiController]
     public class CicloController : ControllerBase
     {
+        public ICicloBL cicloBL { get; set; }
+        public CicloController(ICicloBL cicloBL)
+        {
+            this.cicloBL = cicloBL;
+        }
 
     }
 }
