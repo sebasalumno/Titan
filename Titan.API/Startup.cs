@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -28,6 +29,14 @@ namespace Titan.API
         {
             Configuration = configuration;
         }
+        public CorsPolicy GenerateCorsPolicy()
+        {
+            var corsBuilder = new CorsPolicyBuilder();
+            corsBuilder.AllowAnyHeader();
+            corsBuilder.AllowAnyMethod();
+            corsBuilder.AllowAnyOrigin();
+            return corsBuilder.Build();
+        }
 
         public IConfiguration Configuration { get; }
 
@@ -38,20 +47,12 @@ namespace Titan.API
 
 
             services.AddControllers();
+            services.AddControllers();
 
-            services.AddCors( o => {
-                o.AddPolicy ("AllowSetOrigins", options =>
-                {
-                    options.WithOrigins("http://localhost:8080");
-                    options.AllowAnyHeader();
-                    options.AllowAnyMethod();
-                    options.AllowCredentials();
-
-
-                });
-
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigins", GenerateCorsPolicy());
             });
-
 
 
 
@@ -86,7 +87,7 @@ namespace Titan.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseCors("AllowSetOrigins");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -101,7 +102,7 @@ namespace Titan.API
             });
 
             app.UseRouting();
-
+            app.UseCors("AllowAllOrigins");
             app.UseCors();
 
             app.UseAuthorization();
