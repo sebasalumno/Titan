@@ -38,7 +38,7 @@ namespace Titan.API.Controllers
 
 
         }
-        [HttpPost]
+        [HttpDelete]
         [Route("Delete")]
         public ActionResult<bool> Delete(OfferDTO offer)
         {
@@ -74,7 +74,7 @@ namespace Titan.API.Controllers
 
 
         }
-        [HttpPost]
+        [HttpPut]
         [Route("Update")]
         public ActionResult<List<OfferDTO>> Update(OfferDTO offer)
         {

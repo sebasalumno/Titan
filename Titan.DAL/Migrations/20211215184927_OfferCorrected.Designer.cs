@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Titan.DAL.Entities;
 
 namespace Titan.DAL.Migrations
 {
     [DbContext(typeof(pitufoContext))]
-    partial class pitufoContextModelSnapshot : ModelSnapshot
+    [Migration("20211215184927_OfferCorrected")]
+    partial class OfferCorrected
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -109,6 +111,9 @@ namespace Titan.DAL.Migrations
                     b.Property<string>("Horario")
                         .HasColumnType("longtext");
 
+                    b.Property<int>("Idciclo")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nombre")
                         .HasColumnType("longtext");
 
@@ -119,6 +124,8 @@ namespace Titan.DAL.Migrations
 
                     b.HasIndex("EmpresaId");
 
+                    b.HasIndex("Idciclo");
+
                     b.ToTable("Offers");
                 });
 
@@ -128,17 +135,17 @@ namespace Titan.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("IdCiclo")
+                    b.Property<int>("EmpresaId")
                         .HasColumnType("int");
 
-                    b.Property<int>("OfferId")
+                    b.Property<int>("IdCiclo")
                         .HasColumnType("int");
 
                     b.HasKey("id");
 
-                    b.HasIndex("IdCiclo");
+                    b.HasIndex("EmpresaId");
 
-                    b.HasIndex("OfferId");
+                    b.HasIndex("IdCiclo");
 
                     b.ToTable("OfferEmpresas");
                 });
@@ -256,26 +263,34 @@ namespace Titan.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Titan.DAL.Entities.Ciclo", "Ciclo")
+                        .WithMany()
+                        .HasForeignKey("Idciclo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ciclo");
+
                     b.Navigation("Empresa");
                 });
 
             modelBuilder.Entity("Titan.DAL.Entities.OfferEmpresa", b =>
                 {
+                    b.HasOne("Titan.DAL.Entities.Empresa", "Empresa")
+                        .WithMany()
+                        .HasForeignKey("EmpresaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Titan.DAL.Entities.Ciclo", "ciclo")
                         .WithMany()
                         .HasForeignKey("IdCiclo")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Titan.DAL.Entities.Offer", "offer")
-                        .WithMany()
-                        .HasForeignKey("OfferId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("ciclo");
 
-                    b.Navigation("offer");
+                    b.Navigation("Empresa");
                 });
 
             modelBuilder.Entity("Titan.DAL.Entities.Usuario", b =>

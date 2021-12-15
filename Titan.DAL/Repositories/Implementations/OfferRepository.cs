@@ -43,7 +43,7 @@ namespace Titan.DAL.Repositories.Implementations
 
         public List<Offer> ObtainAll()
         {
-            return _context.Offers.Include(u =>u.ciclo).Include(u => u.Empresa).ToList();
+            return _context.Offers.ToList();
         }
 
         public Offer Update(Offer offer)

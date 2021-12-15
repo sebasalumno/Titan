@@ -15,7 +15,7 @@ namespace Titan.DAL.Entities
         public DbSet<Familia> Familias { get; set; }
         public DbSet<TipoCiclo> TipoCiclos { get; set; }
         public DbSet<Offer> Offers { get; set; }
-
+        public DbSet<OfferEmpresa> OfferEmpresas { get; set; }
 
         public pitufoContext()
         {

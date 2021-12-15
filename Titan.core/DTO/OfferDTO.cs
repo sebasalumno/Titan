@@ -13,10 +13,9 @@ namespace Titan.Core.DTO
         public Double Remuneracion { get; set; }
         public DateTime Fecha_Inicio { get; set; }
         public DateTime Fecha_Fin { get; set; }
-        public int IdEmpresa { get; set; }
+        public int EmpresaId { get; set; }
         public Empresa empresa { get; set; }
         public String Horario { get; set; }
-        public int Idciclo {get;set;}
-        public Ciclo ciclo { get; set; }
+
     }
 }

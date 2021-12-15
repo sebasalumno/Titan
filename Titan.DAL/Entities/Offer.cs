@@ -10,8 +10,8 @@ namespace Titan.DAL.Entities
     {
         [Key]
         public int Id { get; set; }
-        public String Nombre { get; set; }
-        public String Descripcion { get; set; }
+        public string Nombre { get; set; }
+        public string Descripcion { get; set; }
         public int Remuneracion { get; set; }
         public DateTime Fecha_Inicio { get; set; }
         public DateTime Fecha_Fin { get; set; }
@@ -20,10 +20,8 @@ namespace Titan.DAL.Entities
         [ForeignKey("EmpresaId")]
         public Empresa Empresa { get; set; }
 
-        public String Horario { get; set; }
-        public int Idciclo { get; set; }
-        [ForeignKey("Idciclo")]
-        public Ciclo ciclo { get; set; }
+        public string Horario { get; set; }
+
 
 
     }
