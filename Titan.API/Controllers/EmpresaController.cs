@@ -30,7 +30,7 @@ namespace Titan.API.Controllers
 
         [HttpPost]
         [Route("Create")]
-        public ActionResult<EmpresaDTO> Create(EmpresaDTO empresaDTO)
+        public ActionResult<EmpresaCreateDTO> Create(EmpresaCreateDTO empresaDTO)
         {
             var usuario = LoginBL.Create(empresaDTO);
             if (usuario != null)
@@ -41,6 +41,14 @@ namespace Titan.API.Controllers
             {
                 return BadRequest();
             }
+        }
+
+        [HttpGet]
+        [Route("Get")]
+        public ActionResult<EmpresaGetDTO> Obtain(int id)
+        {
+            var empresa = LoginBL.Obtain(id);
+            return empresa;
         }
     }
 }

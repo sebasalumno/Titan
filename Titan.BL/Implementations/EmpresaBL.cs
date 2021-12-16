@@ -24,10 +24,10 @@ namespace Titan.BL.Implementations
             this.mapper = mapper;
         }
 
-        EmpresaDTO IEmpresaBL.Create(EmpresaDTO loginDTO)
+        public EmpresaCreateDTO Create(EmpresaCreateDTO loginDTO)
         {
             loginDTO.Password = passwordGenerator.Hash(loginDTO.Password);
-            var empresa = mapper.Map<EmpresaDTO, Empresa>(loginDTO);
+            var empresa = mapper.Map<EmpresaCreateDTO, Empresa>(loginDTO);
 
 
 
@@ -35,7 +35,7 @@ namespace Titan.BL.Implementations
             {
 
 
-                var u = mapper.Map<Empresa, EmpresaDTO>(loginRepository.Create(empresa));
+                var u = mapper.Map<Empresa, EmpresaCreateDTO>(loginRepository.Create(empresa));
                 u.Password = null;
                 return u;
 
@@ -46,7 +46,7 @@ namespace Titan.BL.Implementations
 
         }
 
-        EmpresaDTO IEmpresaBL.Login(LoginDTO loginDTO)
+        public EmpresaDTO Login(LoginDTO loginDTO)
         {
             loginDTO.Password = passwordGenerator.Hash(loginDTO.Password);
             var empresa = mapper.Map<LoginDTO, Empresa>(loginDTO);
@@ -65,6 +65,13 @@ namespace Titan.BL.Implementations
 
 
             return null;
+        }
+
+        public EmpresaGetDTO Obtain(int number)
+        {
+            var u = mapper.Map<Empresa, EmpresaGetDTO>(loginRepository.Obtain(number));
+
+            return u;
         }
     }
     

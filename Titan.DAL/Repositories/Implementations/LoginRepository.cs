@@ -37,9 +37,9 @@ namespace Titan.DAL.Repositories.Implementations
             return _context.Empresas.Any(u => u.Email == empresa.Email );
         }
 
-        public Empresa Obtain(Empresa empresa)
+        public Empresa Obtain(int id)
         {
-            return _context.Empresas.FirstOrDefault(e => e.Id == empresa.Id);
+            return _context.Empresas.Include(u => u.Provincia).FirstOrDefault(e => e.Id == id);
         }
 
         public List<Empresa> ObtainAll()

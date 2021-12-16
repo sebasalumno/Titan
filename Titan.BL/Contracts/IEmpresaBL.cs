@@ -8,6 +8,7 @@ namespace Titan.BL.Contracts
    public interface IEmpresaBL
     {
         public EmpresaDTO Login(LoginDTO loginDTO);
-        public EmpresaDTO Create(EmpresaDTO empresaDTO);
+        public EmpresaCreateDTO Create(EmpresaCreateDTO empresaDTO);
+        public EmpresaGetDTO Obtain(int number);
     }
 }
