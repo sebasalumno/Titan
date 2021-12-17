@@ -8,7 +8,7 @@ namespace Titan.BL.Contracts
     public interface IOfferBL
     {
         public OfferDTO Create(OfferDTO offer);
-        public OfferDTO Get(OfferDTO offer);
+        public List<OfferDTO> Get(int id);
 
         public List<OfferDTO> GetAll();
 

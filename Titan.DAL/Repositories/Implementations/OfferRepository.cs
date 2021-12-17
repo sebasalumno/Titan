@@ -36,9 +36,9 @@ namespace Titan.DAL.Repositories.Implementations
         }
 
 
-        public Offer Obtain(Offer offer)
+        public List<Offer> Obtain(int id)
         {
-            return _context.Offers.FirstOrDefault(e => e.Id == offer.Id);
+            return _context.Offers.Where(u => u.EmpresaId == id).ToList();
         }
 
         public List<Offer> ObtainAll()

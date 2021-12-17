@@ -74,6 +74,24 @@ namespace Titan.API.Controllers
 
 
         }
+        [HttpGet]
+        [Route("Get")]
+        public ActionResult<List<OfferDTO>> Get(int id)
+        {
+
+            var usuario = offerBL.Get(id);
+
+            if (usuario != null)
+            {
+                return Ok(usuario);
+            }
+            else
+            {
+                return BadRequest();
+            }
+
+
+        }
         [HttpPut]
         [Route("Update")]
         public ActionResult<List<OfferDTO>> Update(OfferDTO offer)

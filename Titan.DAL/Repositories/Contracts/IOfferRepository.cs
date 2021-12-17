@@ -9,7 +9,7 @@ namespace Titan.DAL.Repositories.Contracts
     {
 
         Offer Create(Offer offer);
-        Offer Obtain(Offer offer);
+        List<Offer> Obtain(int id);
         List<Offer> ObtainAll();
         bool Delete(Offer offer);
         Offer Update(Offer offer);

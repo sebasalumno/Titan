@@ -37,18 +37,17 @@ namespace Titan.BL.Implementations
             return null;
         }
 
-        public OfferDTO Get(OfferDTO offer)
+        public List<OfferDTO> Get(int id)
         {
-            var offerC = mapper.Map<OfferDTO, Offer>(offer);
-            if (!offerRepository.Exist(offerC))
-            {
+            
 
 
-                var u = mapper.Map<Offer, OfferDTO>(offerRepository.Obtain(offerC));
+
+                var u = mapper.Map<List<Offer>, List<OfferDTO>>(offerRepository.Obtain(id));
 
                 return u;
 
-            }
+            
 
 
             return null;
