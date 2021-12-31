@@ -57,7 +57,7 @@ namespace Titan.BL.Implementations
             {
 
 
-                var u = mapper.Map<Empresa, EmpresaDTO>(loginRepository.Create(empresa));
+                var u = mapper.Map<Empresa, EmpresaDTO>(loginRepository.Login(empresa));
                 u.Password = null;
                 return u;
 

@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Titan.DAL.Entities;
 
 namespace Titan.DAL.Migrations
 {
     [DbContext(typeof(pitufoContext))]
-    partial class pitufoContextModelSnapshot : ModelSnapshot
+    [Migration("20211230185353_Inscripciones_added")]
+    partial class Inscripciones_added
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -107,8 +109,6 @@ namespace Titan.DAL.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("OfertaId");
 
                     b.ToTable("Inscripciones");
                 });
@@ -271,17 +271,6 @@ namespace Titan.DAL.Migrations
                         .IsRequired();
 
                     b.Navigation("Provincia");
-                });
-
-            modelBuilder.Entity("Titan.DAL.Entities.Inscripciones", b =>
-                {
-                    b.HasOne("Titan.DAL.Entities.Offer", "Oferta")
-                        .WithMany()
-                        .HasForeignKey("OfertaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Oferta");
                 });
 
             modelBuilder.Entity("Titan.DAL.Entities.Offer", b =>
