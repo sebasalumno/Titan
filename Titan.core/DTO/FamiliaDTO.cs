@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Titan.DAL.Entities
+namespace Titan.Core.DTO
 {
-    public class TipoCiclo
+   public class FamiliaDTO
     {
-        [Key]
+
         public int Id { get; set; }
         public string Name { get; set; }
     }

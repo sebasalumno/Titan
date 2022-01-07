@@ -30,12 +30,12 @@ namespace Titan.DAL.Repositories.Implementations
 
         public List<Inscripciones> SearchEmpresas(int id)
         {
-            return _context.Inscripciones.Where(i => i.Oferta.EmpresaId == id).ToList();
+            return _context.Inscripciones.Where(i => i.Oferta.offer.EmpresaId == id).ToList();
         }
 
         public List<Inscripciones> SearchFamilias(string nombre)
         {
-            throw new NotImplementedException();
+            return _context.Inscripciones.Where(i => i.Oferta.ciclo.Familia.ToString().Contains(nombre)).ToList();
         }
     }
 }

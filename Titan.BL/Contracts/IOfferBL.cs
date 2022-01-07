@@ -12,8 +12,11 @@ namespace Titan.BL.Contracts
 
         public List<OfferDTO> GetAll();
 
-        public bool Delete(OfferDTO offer);
+        public bool Delete(int Id);
 
         public OfferDTO Update(OfferDTO offer);
+
+        public List<OfferDTO> Activas(DateTime date);
+        public List<OfferDTO> SearchNombre(string nombre);
     }
 }

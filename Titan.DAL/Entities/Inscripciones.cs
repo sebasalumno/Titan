@@ -25,7 +25,7 @@ namespace Titan.DAL.Entities
 
         [ForeignKey("OfertaId")]
 
-        public Offer Oferta { get; set; }
+        public OfferEmpresa Oferta { get; set; }
         
         public DateTime FechaInscripcion { get; set; }
 

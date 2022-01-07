@@ -67,6 +67,15 @@ namespace Titan.API.Controllers
         [Route("Search")]
         public ActionResult<List<InscripcionesDTO>> Filter(string  filter)
         {
+            var lista = inscripcionesBL.SearchFamilias(filter);
+            if (lista != null)
+            {
+                return Ok(lista);
+            }
+            else
+            {
+                return BadRequest();
+            }
 
         }
 

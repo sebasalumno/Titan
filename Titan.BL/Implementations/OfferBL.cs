@@ -33,7 +33,6 @@ namespace Titan.BL.Implementations
 
             }
 
-
             return null;
         }
 
@@ -50,7 +49,7 @@ namespace Titan.BL.Implementations
             
 
 
-            return null;
+
         }
 
         public List<OfferDTO> GetAll()
@@ -60,20 +59,17 @@ namespace Titan.BL.Implementations
             return u;
         }
 
-        public bool Delete(OfferDTO offer)
+        public bool Delete(int Id)
         {
-            var offerC = mapper.Map<OfferDTO, Offer>(offer);
-
-            if (offerRepository.Exist(offerC))
-            {
+            
 
 
-                var result = offerRepository.Delete(offerC);
+
+                var result = offerRepository.Delete(Id);
 
                 return result;
 
-            }
-            return false;
+
         }
 
         public OfferDTO Update(OfferDTO offer)
@@ -92,6 +88,18 @@ namespace Titan.BL.Implementations
 
             }
             return null;
+        }
+
+        public List<OfferDTO> Activas(DateTime date)
+        {
+            var u = mapper.Map<List<Offer>, List<OfferDTO>>(offerRepository.Activas(date));
+            return u;
+
+        }
+        public List<OfferDTO> SearchNombre(string nombre)
+        {
+            var u = mapper.Map<List<Offer>, List<OfferDTO>>(offerRepository.SearchNombre(nombre));
+            return u;
         }
     }
 

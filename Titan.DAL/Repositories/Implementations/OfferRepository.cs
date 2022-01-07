@@ -16,6 +16,7 @@ namespace Titan.DAL.Repositories.Implementations
             this._context = context;
 
         }
+
         public Offer Create(Offer offer)
         {
             var u = _context.Offers.Add(offer);
@@ -23,9 +24,10 @@ namespace Titan.DAL.Repositories.Implementations
             return u.Entity;
         }
 
-        public bool Delete(Offer offer)
+        public bool Delete(int id)
         {
-            _context.Offers.Remove(offer);
+            var del = _context.Offers.Find(id);
+            _context.Offers.Remove(del);
             _context.SaveChanges();
             return true;
         }
@@ -51,6 +53,18 @@ namespace Titan.DAL.Repositories.Implementations
             var update = _context.Offers.Update(offer);
             _context.SaveChanges();
             return update.Entity;
+        }
+
+        public List<Offer> Activas(DateTime date)
+        {
+            var lista = _context.Offers.Where(i => i.Fecha_Fin.CompareTo(date)>=0).ToList();
+            return lista;
+        }
+
+        public List<Offer> SearchNombre(string nombre)
+        {
+            var lista = _context.Offers.Where(i => i.Nombre.Contains(nombre)).ToList();
+            return lista;
         }
     }
 }

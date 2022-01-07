@@ -5,28 +5,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Titan.BL.Contracts;
-using Titan.BL.Implementations;
 using Titan.Core.DTO;
 
 namespace Titan.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CicloController : ControllerBase
+    public class FamiliasController : ControllerBase
     {
-        public ICicloBL cicloBL { get; set; }
-        public CicloController(ICicloBL cicloBL)
+
+        public IFamiliaBL familiaBL { get; set; }
+
+        public FamiliasController(IFamiliaBL familiaBL)
         {
-            this.cicloBL = cicloBL;
+            this.familiaBL = familiaBL;
+
         }
+
 
         [HttpGet]
         [Route("GetAll")]
-        public ActionResult<List<CicloDTO>> GetAll()
+        public ActionResult<List<FamiliaDTO>> GetAll()
         {
 
-            var usuario = cicloBL.GetAll();
-
+            var usuario = familiaBL.GetAll();
 
             if (usuario != null)
             {
@@ -38,6 +40,5 @@ namespace Titan.API.Controllers
             }
 
         }
-
     }
 }

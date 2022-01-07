@@ -11,8 +11,10 @@ namespace Titan.DAL.Repositories.Contracts
         Offer Create(Offer offer);
         List<Offer> Obtain(int id);
         List<Offer> ObtainAll();
-        bool Delete(Offer offer);
+        bool Delete(int id);
         Offer Update(Offer offer);
         bool Exist(Offer u);
+        List<Offer> Activas(DateTime date);
+        List<Offer> SearchNombre(string nombre);
     }
 }

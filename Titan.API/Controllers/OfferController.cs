@@ -22,6 +22,7 @@ namespace Titan.API.Controllers
 
         }
         [HttpPost]
+        [Route("Create")]
         public ActionResult<OfferDTO> Create(OfferDTO offerDTO)
         {
 
@@ -40,10 +41,10 @@ namespace Titan.API.Controllers
         }
         [HttpDelete]
         [Route("Delete")]
-        public ActionResult<bool> Delete(OfferDTO offer)
+        public ActionResult<bool> Delete(int Id)
         {
 
-            var usuario = offerBL.Delete(offer);
+            var usuario = offerBL.Delete(Id);
 
             if (usuario ==true)
             {
@@ -102,6 +103,44 @@ namespace Titan.API.Controllers
             if (usuario != null)
             {
                 return Ok(usuario);
+            }
+            else
+            {
+                return BadRequest();
+            }
+
+
+        }
+
+        [HttpGet]
+        [Route("Activas")]
+        public ActionResult<List<OfferDTO>> Activas()
+        {
+            DateTime date = DateTime.Now;
+            var lista = offerBL.Activas(date);
+
+            if (lista != null)
+            {
+                return Ok(lista);
+            }
+            else
+            {
+                return BadRequest();
+            }
+
+
+        }
+
+        [HttpGet]
+        [Route("SearchNombre")]
+        public ActionResult<List<OfferDTO>> SearchNombre(String nombre)
+        {
+
+            var lista = offerBL.SearchNombre(nombre);
+
+            if (lista != null)
+            {
+                return Ok(lista);
             }
             else
             {

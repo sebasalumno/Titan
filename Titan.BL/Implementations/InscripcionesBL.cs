@@ -13,7 +13,7 @@ namespace Titan.BL.Implementations
     {
         public IInscripcionesRepository inscripcionesRepository { get; set; }
         public IMapper mapper { get; set; }
-        public InscripcionesBL(IInscripcionesRepository inscripcionesRepository, IMapper mapper) 
+        public InscripcionesBL(IInscripcionesRepository inscripcionesRepository, IMapper mapper)
         {
             this.inscripcionesRepository = inscripcionesRepository;
             this.mapper = mapper;
@@ -40,9 +40,11 @@ namespace Titan.BL.Implementations
             return ret;
         }
 
-        public InscripcionesDTO SearchFamilias(string Familia)
+        public List<InscripcionesDTO> SearchFamilias(string Familia)
         {
-            throw new NotImplementedException();
+            var lista = inscripcionesRepository.SearchFamilias(Familia);
+            var ret = mapper.Map<List<Inscripciones>, List<InscripcionesDTO>>(lista);
+            return ret;
         }
     }
 }

@@ -5,8 +5,8 @@ using Titan.Core.DTO;
 
 namespace Titan.BL.Contracts
 {
-    public interface ICicloBL
+    public interface ITipoCicloBL
     {
-        List<CicloDTO> GetAll();
+        List<TipoCicloDTO> GetAll();
     }
 }

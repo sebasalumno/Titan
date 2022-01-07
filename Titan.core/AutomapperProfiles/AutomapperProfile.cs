@@ -27,6 +27,12 @@ namespace Titan.Core.AutomapperProfiles
             CreateMap<Offer, OfferDTO>();
             CreateMap<Inscripciones, InscripcionesDTO>();
             CreateMap<InscripcionesDTO, Inscripciones>();
+            CreateMap<FamiliaDTO, Familia>();
+            CreateMap<Familia, FamiliaDTO>();
+            CreateMap<TipoCicloDTO, TipoCiclo>();
+            CreateMap<TipoCiclo, TipoCicloDTO>();
+            CreateMap<Ciclo, CicloDTO>();
+            CreateMap<CicloDTO, Ciclo>();
 
         }
     }

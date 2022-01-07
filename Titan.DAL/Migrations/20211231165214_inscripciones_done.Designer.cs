@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Titan.DAL.Entities;
 
 namespace Titan.DAL.Migrations
 {
     [DbContext(typeof(pitufoContext))]
-    partial class pitufoContextModelSnapshot : ModelSnapshot
+    [Migration("20211231165214_inscripciones_done")]
+    partial class inscripciones_done
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
