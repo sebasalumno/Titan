@@ -17,5 +17,7 @@ namespace Titan.Core.DTO
         public Empresa empresa { get; set; }
         public String Horario { get; set; }
 
+        public List<OfferEmpresa> listaCiclos { get; set; }
+
     }
 }

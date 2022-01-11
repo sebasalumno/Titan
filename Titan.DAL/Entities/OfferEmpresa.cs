@@ -15,7 +15,5 @@ namespace Titan.DAL.Entities
         public Ciclo ciclo { get; set; }
         public int OfferId { get; set; }
 
-        [ForeignKey("OfferId")]
-        public Offer offer { get; set; }
     }
 }

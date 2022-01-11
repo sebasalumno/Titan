@@ -63,6 +63,25 @@ namespace Titan.API.Controllers
             }
             
 
-        }       
+        }
+        [HttpGet]
+        [Route("GetId")]
+        /*
+         * Este metodo se encargará de devolver el id al que pertenece un email
+         */
+        public ActionResult<UsuarioDTO> GetId (string email)
+        {
+            return usuarioBL.GetId(email);
+        }
+
+        [HttpGet]
+        [Route("GetUser")]
+        /*
+         * Este metodo se encargará de devolver el id al que pertenece un email
+         */
+        public ActionResult<UsuarioDTO> GetUser(int id)
+        {
+            return usuarioBL.GetUser(id);
+        }
     }
 }

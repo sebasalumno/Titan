@@ -93,6 +93,9 @@ namespace Titan.API
             services.AddScoped<ITipoCicloBL, TipoCicloBL>();
 
             services.AddScoped<ITipoCicloRepository, TipoCicloRepository>();
+            services.AddScoped<IOfertaCicloBL, OfertaCicloBL>();
+
+            services.AddScoped<IOfertaCicloRepository, OfertaCicloRepository>();
 
 
             services.AddDbContext<pitufoContext>(opts => opts.UseMySql(Configuration["ConnectionString:PitufoDB"],

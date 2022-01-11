@@ -65,5 +65,17 @@ namespace Titan.DAL.Repositories.Implementations
             _context.SaveChanges();
             return update.Entity;
         }
+
+        public Usuario GetId(string email)
+        {
+            var a = _context.Usuarios.FirstOrDefault(e => e.Email.Equals(email));
+            return a;
+        }
+        
+        public Usuario GetUser(int id)
+        {
+            var a = _context.Usuarios.FirstOrDefault(e => e.Id == id);
+            return a;
+        }
     }
 }

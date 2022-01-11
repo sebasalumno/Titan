@@ -17,15 +17,15 @@ namespace Titan.DAL.Entities
         [Key]
         public int Id { get; set; }
 
- 
         public int AlumnoId { get; set; }
        [ForeignKey("AlumnoId")]
+        public Usuario Alumno { get; set; }
 
         public int OfertaId { get; set; }
 
         [ForeignKey("OfertaId")]
 
-        public OfferEmpresa Oferta { get; set; }
+        public Offer Oferta { get; set; }
         
         public DateTime FechaInscripcion { get; set; }
 

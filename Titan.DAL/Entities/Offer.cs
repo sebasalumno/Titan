@@ -22,6 +22,8 @@ namespace Titan.DAL.Entities
 
         public string Horario { get; set; }
 
+        public List<OfferEmpresa> listaCiclos { get; set; }
+
 
 
     }

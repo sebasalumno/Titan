@@ -21,6 +21,7 @@ namespace Titan.DAL.Repositories.Implementations
         {
             var u = _context.Offers.Add(offer);
             _context.SaveChanges();
+
             return u.Entity;
         }
 

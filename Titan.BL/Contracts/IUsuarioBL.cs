@@ -10,6 +10,8 @@ namespace Titan.BL.Contracts
 
         public UsuarioDTO Login(LoginDTO loginDTO);
         public UsuarioDTO Create(UsuarioDTO usuarioDTO);
+        public UsuarioDTO GetId(string email);
+        public UsuarioDTO GetUser(int id);
 
     }
 }

@@ -62,6 +62,15 @@ namespace Titan.BL.Implementations
 
                 return null;
             }
-        
+
+        public UsuarioDTO GetId(string email)
+        {
+            return mapper.Map<Usuario, UsuarioDTO>(usuarioRepository.GetId(email));
+        }
+
+        public UsuarioDTO GetUser(int id)
+        {
+            return mapper.Map<Usuario, UsuarioDTO>(usuarioRepository.GetUser(id));
+        }
     }
 } 
