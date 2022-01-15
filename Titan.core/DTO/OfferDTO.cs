@@ -10,14 +10,14 @@ namespace Titan.Core.DTO
         public int Id { get; set; }
         public String Nombre { get; set; }
         public String Descripcion { get; set; }
-        public Double Remuneracion { get; set; }
+        public int Remuneracion { get; set; }
         public DateTime Fecha_Inicio { get; set; }
         public DateTime Fecha_Fin { get; set; }
         public int EmpresaId { get; set; }
         public Empresa empresa { get; set; }
         public String Horario { get; set; }
 
-        public List<OfferEmpresa> listaCiclos { get; set; }
+        public List<OfferEmpresaDTO> listaCiclos { get; set; }
 
     }
 }
