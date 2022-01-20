@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace Titan.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-
+    [AllowAnonymous]
     public class EmpresaController : ControllerBase
     {
         public IEmpresaBL LoginBL { get; set; }

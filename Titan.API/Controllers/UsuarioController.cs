@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Cors;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -7,26 +9,32 @@ using System.Linq;
 using System.Threading.Tasks;
 using Titan.BL.Contracts;
 using Titan.Core.DTO;
+using Titan.Core.Security;
+using Titan.DAL.Entities;
 
 namespace Titan.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [AllowAnonymous]
     public class UsuarioController : ControllerBase
     {
-
+        public IMapper mapper { get; set; }
+        public IJwtBearer JwtBearer { get; set; }
         public IUsuarioBL usuarioBL { get; set; }
 
-        public UsuarioController(IUsuarioBL usuarioBL)
+        public UsuarioController(IUsuarioBL usuarioBL, IJwtBearer jwtBearer, IMapper mapper)
         {
             this.usuarioBL = usuarioBL;
+            this.JwtBearer = jwtBearer;
+            this.mapper = mapper;
 
         }
 
 
 
         [HttpPost]
-
+        [AllowAnonymous]
         [Route ("Login")]
         /*
          * Este metodo inicia el proceso de login, para comprobar que el usuario esta en la base de datos
@@ -36,7 +44,14 @@ namespace Titan.API.Controllers
             UsuarioDTO usuario;
 
             if ((usuario = usuarioBL.Login(loginDTO)) != null )
-                return Ok(usuario);
+            {
+                var u = mapper.Map<UsuarioDTO, Usuario>(usuario);
+
+                Response.Headers.Add("Authorization", JwtBearer.GenerateJWTToken(u));
+
+            return Ok(usuario);
+            }
+                
             else
                 return Unauthorized();
 
