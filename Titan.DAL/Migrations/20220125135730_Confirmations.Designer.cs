@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Titan.DAL.Entities;
 
 namespace Titan.DAL.Migrations
 {
     [DbContext(typeof(pitufoContext))]
-    partial class pitufoContextModelSnapshot : ModelSnapshot
+    [Migration("20220125135730_Confirmations")]
+    partial class Confirmations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,33 +64,11 @@ namespace Titan.DAL.Migrations
                     b.ToTable("Confirmaciones");
                 });
 
-            modelBuilder.Entity("Titan.DAL.Entities.ConfirmacionE", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("Codigo")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdEmpresa")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdEmpresa");
-
-                    b.ToTable("ConfirmacionesE");
-                });
-
             modelBuilder.Entity("Titan.DAL.Entities.Empresa", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    b.Property<bool>("Confirmado")
-                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Direccion")
                         .HasColumnType("longtext");
@@ -317,17 +297,6 @@ namespace Titan.DAL.Migrations
                         .IsRequired();
 
                     b.Navigation("Usuario");
-                });
-
-            modelBuilder.Entity("Titan.DAL.Entities.ConfirmacionE", b =>
-                {
-                    b.HasOne("Titan.DAL.Entities.Empresa", "Empresa")
-                        .WithMany()
-                        .HasForeignKey("IdEmpresa")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Empresa");
                 });
 
             modelBuilder.Entity("Titan.DAL.Entities.Empresa", b =>

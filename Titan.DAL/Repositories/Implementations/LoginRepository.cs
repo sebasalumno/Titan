@@ -10,6 +10,7 @@ namespace Titan.DAL.Repositories.Implementations
 {
    public class LoginRepository : ILoginRepository
     {
+
         public pitufoContext _context { get; set; }
         public LoginRepository(pitufoContext context)
         {
@@ -23,9 +24,20 @@ namespace Titan.DAL.Repositories.Implementations
 
         }
 
-        public Empresa Create(Empresa empresa)
+        public Empresa Create(Empresa empresa,int codigo)
         {
+            empresa.Confirmado = false;
             var u = _context.Empresas.Add(empresa);
+            _context.SaveChanges();
+
+            ConfirmacionE conf = new ConfirmacionE
+            {
+                IdEmpresa = empresa.Id,
+                Codigo = codigo
+            };
+
+            _context.ConfirmacionesE.Add(conf);
+
             _context.SaveChanges();
             return u.Entity;
         }
@@ -61,6 +73,82 @@ namespace Titan.DAL.Repositories.Implementations
             _context.SaveChanges();
             return update.Entity;
 
+        }
+
+        public Usuario Send(int id)
+        {
+            var a = _context.Usuarios.FirstOrDefault(i => i.Id == id);
+            if (a !=null)
+            {
+                return a;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public bool Confirmar(string email, int codigo)
+        {
+            var u = _context.ConfirmacionesE.FirstOrDefault(c => c.Empresa.Email.Equals(email) && c.Codigo == codigo);
+
+            if (u != null)
+            {
+                var us = _context.Empresas.FirstOrDefault(user => user.Id == u.IdEmpresa);
+
+                us.Confirmado = true;
+                _context.Empresas.Update(us);
+                _context.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+
+        }
+
+        public bool Iniciar(string email, int codigo)
+        {
+            var u = _context.ConfirmacionesE.FirstOrDefault(c => c.Empresa.Email.Equals(email));
+
+            if (u != null)
+            {
+                u.Codigo = codigo;
+                _context.ConfirmacionesE.Update(u);
+                _context.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+
+        }
+
+        public bool Cambiar(string password, int codigo)
+        {
+            var u = _context.ConfirmacionesE.FirstOrDefault(c => c.Codigo == codigo);
+            if(u != null && u.Codigo != 0)
+            {
+                var emp = _context.Empresas.FirstOrDefault(e => e.Id == u.IdEmpresa);
+                emp.Password = password;
+                _context.Empresas.Update(emp);
+                u.Codigo = 0;
+                _context.ConfirmacionesE.Update(u);
+
+                _context.SaveChanges();
+                return true;
+                
+            }
+            else { 
+
+            return false; 
+
+
+                 }
         }
     }
 }

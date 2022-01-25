@@ -34,7 +34,6 @@ namespace Titan.API.Controllers
 
 
         [HttpPost]
-        [AllowAnonymous]
         [Route ("Login")]
         /*
          * Este metodo inicia el proceso de login, para comprobar que el usuario esta en la base de datos

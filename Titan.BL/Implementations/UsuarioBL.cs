@@ -48,6 +48,12 @@ namespace Titan.BL.Implementations
              */
             public UsuarioDTO Create(UsuarioDTO usuarioDTO)
             {
+            Random num = new Random();
+            int a = num.Next(1, 10);
+            int b = num.Next(1, 10);
+            int c = num.Next(1, 10);
+            int d = num.Next(1, 10);
+            string codigo = a+""+b+""+c+""+d;
             usuarioDTO.Password = passwordGenerator.Hash(usuarioDTO.Password);
             var usuario = mapper.Map<UsuarioDTO, Usuario>(usuarioDTO);
 
@@ -56,9 +62,10 @@ namespace Titan.BL.Implementations
             if(!usuarioRepository.Exist(usuario)){
 
                 
-                 var u =    mapper.Map<Usuario, UsuarioDTO>(usuarioRepository.Create(usuario));
+                 var u =    mapper.Map<Usuario, UsuarioDTO>(usuarioRepository.Create(usuario,int.Parse(codigo)));
                 u.Password = null;
-                this.emailSender.Send(usuario.Email);
+
+                this.emailSender.Send(usuario.Email,int.Parse(codigo));
                 return u;
 
             }
@@ -75,6 +82,36 @@ namespace Titan.BL.Implementations
         public UsuarioDTO GetUser(int id)
         {
             return mapper.Map<Usuario, UsuarioDTO>(usuarioRepository.GetUser(id));
+        }
+
+        public bool Confirmar(string email, int codigo)
+        {
+            return usuarioRepository.Confirmacion(email,codigo);
+        }
+
+        public bool Iniciar(string email)
+        {
+            Random num = new Random();
+            int a = num.Next(1, 10);
+            int b = num.Next(1, 10);
+            int c = num.Next(1, 10);
+            int d = num.Next(1, 10);
+            string codigo = a + "" + b + "" + c + "" + d;
+
+            this.emailSender.Contrasena(email, int.Parse(codigo));
+
+            var u = usuarioRepository.Iniciar(email, int.Parse(codigo));
+
+            return u;
+
+
+
+        }
+        public bool Cambiar(string password, int codigo)
+        {
+
+            password = passwordGenerator.Hash(password);
+            return usuarioRepository.Cambiar(password, codigo);
         }
     }
 } 

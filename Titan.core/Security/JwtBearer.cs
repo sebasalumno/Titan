@@ -40,6 +40,26 @@ namespace Titan.Core.Security
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
+        public string GenerateJWTTokenEmpresa(Empresa empresa)
+        {
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:SecretKey"]));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            var claims = new[]
+            {
+                new Claim("Id",empresa.Id.ToString()),
+                new Claim("Email", empresa.Email)
+            };
+
+            var token = new JwtSecurityToken(
+                issuer: Configuration["Jwt:Issuer"],
+                audience: Configuration["Jwt:Audience"],
+                claims: claims,
+                expires: DateTime.Now.AddYears(1),
+                signingCredentials: credentials
+            );
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
         public int GetUsuarioIdFromToken(string token)
         {
             var handler = new JwtSecurityTokenHandler();

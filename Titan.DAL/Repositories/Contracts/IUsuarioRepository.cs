@@ -8,7 +8,7 @@ namespace Titan.DAL.Repositories.Contracts
    public interface IUsuarioRepository
     {
         Usuario Login(Usuario u);
-        Usuario Create(Usuario usuario);
+        Usuario Create(Usuario usuario,int Codigo);
         Usuario Obtain(Usuario usuario);
         List<Usuario> ObtainAll();
         bool Delete(Usuario usuario);
@@ -16,5 +16,8 @@ namespace Titan.DAL.Repositories.Contracts
         bool Exist(Usuario u);
         Usuario GetId(string email);
         Usuario GetUser(int id);
+        bool Confirmacion(string email, int codigo);
+        bool Iniciar(string email, int codigo);
+        bool Cambiar(string password, int codigo);
     }
 }

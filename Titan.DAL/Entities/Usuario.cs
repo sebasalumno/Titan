@@ -26,5 +26,6 @@ namespace Titan.DAL.Entities
         public Ciclo ciclo { get; set; }
         public double nota { get; set; }
         public DateTime FechaRegistro { get; set; }
+        public bool Confirmado { get; set; }
     }
 }

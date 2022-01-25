@@ -10,14 +10,15 @@ namespace Titan.DAL.Entities
     {
         [Key]
         public int Id { get; set; }
-        public String Email { get; set; }
-        public String Name { get; set; }
+        public string Email { get; set; }
+        public string Name { get; set; }
         public int ProvinciaId { get; set; }
         [ForeignKey("ProvinciaId")]
         public Provincia Provincia { get; set; }
-        public String localidad { get; set; }
-        public String Direccion { get; set; }
-        public String Password { get; set; }
+        public string localidad { get; set; }
+        public string Direccion { get; set; }
+        public string Password { get; set; }
+        public bool Confirmado { get; set; }
 
 
     }

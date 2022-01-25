@@ -9,6 +9,7 @@ namespace Titan.Core.Security
     {
 
         public string GenerateJWTToken(Usuario usuario);
+        public string GenerateJWTTokenEmpresa(Empresa empresa);
 
         public int GetUsuarioIdFromToken(string token);
     }

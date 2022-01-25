@@ -57,9 +57,9 @@ namespace Titan.API
             string[] exposedheader = { "Authorization" };
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowSetOrigins", o=>{
+                options.AddPolicy("AllowAllOrigins", o=>{
 
-                    o.WithOrigins("http://localhost:8080");
+                    o.WithOrigins("http://localhost:4200");
                     o.AllowAnyHeader();
                     o.AllowAnyMethod();
                     o.AllowCredentials();

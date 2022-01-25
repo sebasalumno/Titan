@@ -10,5 +10,9 @@ namespace Titan.BL.Contracts
         public EmpresaDTO Login(LoginDTO loginDTO);
         public EmpresaCreateDTO Create(EmpresaCreateDTO empresaDTO);
         public EmpresaGetDTO Obtain(int number);
+        public bool Send(int id);
+        public bool Confirmar(string email, int codigo);
+        public bool Iniciar(string email);
+        public bool Cambiar(string password, int codigo);
     }
 }
