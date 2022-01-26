@@ -92,11 +92,12 @@ namespace Titan.DAL.Repositories.Implementations
         {
             var u = _context.ConfirmacionesE.FirstOrDefault(c => c.Empresa.Email.Equals(email) && c.Codigo == codigo);
 
-            if (u != null)
+            if (u != null && u.Codigo ==0)
             {
                 var us = _context.Empresas.FirstOrDefault(user => user.Id == u.IdEmpresa);
 
                 us.Confirmado = true;
+                u.Codigo = 0;
                 _context.Empresas.Update(us);
                 _context.SaveChanges();
                 return true;
