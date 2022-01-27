@@ -16,7 +16,7 @@ namespace Titan.DAL.Repositories.Contracts
         bool Exist(Empresa u);
         Usuario Send(int id);
         bool Confirmar(string email, int codigo);
-        bool Iniciar(string email,int codigo);
+        Empresa Iniciar(int id,int codigo);
 
         bool Cambiar(string password, int codigo);
     }

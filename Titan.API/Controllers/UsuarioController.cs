@@ -41,8 +41,8 @@ namespace Titan.API.Controllers
         public ActionResult<UsuarioDTO> Login(LoginDTO loginDTO)
         {
             UsuarioDTO usuario;
-
-            if ((usuario = usuarioBL.Login(loginDTO)) != null )
+            usuario = usuarioBL.Login(loginDTO);
+            if (( usuario != null ))
             {
                 var u = mapper.Map<UsuarioDTO, Usuario>(usuario);
 

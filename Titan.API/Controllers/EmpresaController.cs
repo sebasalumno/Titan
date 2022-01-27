@@ -75,9 +75,9 @@ namespace Titan.API.Controllers
         }
         [HttpPost]
         [Route("Send")]
-        public ActionResult<bool> Send(int id)
+        public ActionResult<bool> Send(SendDTO send)
         {
-            return LoginBL.Send(id);
+            return LoginBL.Send(send.id,send.idempresa);
         }
     }
 }

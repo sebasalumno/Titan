@@ -120,20 +120,21 @@ namespace Titan.DAL.Repositories.Implementations
 
         }
 
-        public bool Iniciar(string email, int codigo)
+        public Empresa Iniciar(int id, int codigo)
         {
-            var u = _context.ConfirmacionesE.FirstOrDefault(c => c.Empresa.Email.Equals(email));
+            var u = _context.ConfirmacionesE.FirstOrDefault(c => c.IdEmpresa == id);
 
             if (u != null)
             {
                 u.Codigo = codigo;
                 _context.ConfirmacionesE.Update(u);
+                var e = _context.Empresas.FirstOrDefault(d => d.Id == id);
                 _context.SaveChanges();
-                return true;
+                return e;
             }
             else
             {
-                return false;
+                return null;
             }
 
 

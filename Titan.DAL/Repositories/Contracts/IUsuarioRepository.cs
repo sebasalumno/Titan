@@ -17,7 +17,7 @@ namespace Titan.DAL.Repositories.Contracts
         Usuario GetId(string email);
         Usuario GetUser(int id);
         bool Confirmacion(string email, int codigo);
-        bool Iniciar(string email, int codigo);
+        Usuario Iniciar(int id, int codigo);
         bool Cambiar(string password, int codigo);
     }
 }

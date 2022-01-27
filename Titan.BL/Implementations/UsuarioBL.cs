@@ -32,13 +32,16 @@ namespace Titan.BL.Implementations
         {
             loginDTO.Password = passwordGenerator.Hash(loginDTO.Password);
             var usuario = mapper.Map<LoginDTO, Usuario>(loginDTO);
+
             var usuarioDTO = mapper.Map<Usuario, UsuarioDTO>(usuarioRepository.Login(usuario));
+
             if (usuarioDTO != null)
             {
                 usuarioDTO.Password = null;
+                return  usuarioDTO;
             }
-
-            return  usuarioDTO;
+            return null;
+            
 
 
         }
@@ -89,7 +92,7 @@ namespace Titan.BL.Implementations
             return usuarioRepository.Confirmacion(email,codigo);
         }
 
-        public bool Iniciar(string email)
+        public bool Iniciar(int id)
         {
             Random num = new Random();
             int a = num.Next(1, 10);
@@ -98,11 +101,18 @@ namespace Titan.BL.Implementations
             int d = num.Next(1, 10);
             string codigo = a + "" + b + "" + c + "" + d;
 
-            this.emailSender.Contrasena(email, int.Parse(codigo));
+            var u = usuarioRepository.Iniciar(id, int.Parse(codigo));
 
-            var u = usuarioRepository.Iniciar(email, int.Parse(codigo));
+            if (u != null)
+            {
+                this.emailSender.Contrasena(u.Email, int.Parse(codigo));
 
-            return u;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
 
 
 

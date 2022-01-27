@@ -13,7 +13,7 @@ namespace Titan.BL.Contracts
         public UsuarioDTO GetId(string email);
         public UsuarioDTO GetUser(int id);
         public bool Confirmar(string email,int codigo);
-        public bool Iniciar(string email);
+        public bool Iniciar(int id);
         public bool Cambiar(string password, int codigo);
 
     }

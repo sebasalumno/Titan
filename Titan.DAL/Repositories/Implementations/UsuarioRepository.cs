@@ -21,9 +21,10 @@ namespace Titan.DAL.Repositories.Implementations
          */
         public Usuario Login(Usuario usuario)
         {
-            if(usuario.Confirmado == true)
+            var u = _context.Usuarios.Include(u=>u.Provincia).FirstOrDefault(u => u.Email == usuario.Email && u.Password == usuario.Password);
+            if(u.Confirmado == true)
             {
-                return _context.Usuarios.Include(u => u.Provincia).FirstOrDefault(u => u.Email == usuario.Email && u.Password == usuario.Password);
+                return u;
             }
 
             return null;
@@ -114,20 +115,21 @@ namespace Titan.DAL.Repositories.Implementations
         
         }
 
-        public bool Iniciar(string email, int codigo)
+        public Usuario Iniciar(int id, int codigo)
         {
-            var u = _context.Confirmaciones.FirstOrDefault(c => c.Usuario.Email.Equals(email));
+            var u = _context.Confirmaciones.FirstOrDefault(c => c.Usuario.Id == id);
 
             if (u != null)
             {
                 u.Codigo = codigo;
                 _context.Confirmaciones.Update(u);
+                var v = _context.Usuarios.FirstOrDefault(d => d.Id == id);
                 _context.SaveChanges();
-                return true;
+                return v;
             }
             else
             {
-                return false;
+                return null;
             }
 
 

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -6,11 +7,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Titan.BL.Contracts;
+using Titan.Core.DTO;
 
 namespace Titan.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [AllowAnonymous]
     public class ConfirmacionController : ControllerBase
     {
         public IMapper mapper { get; set; }
@@ -27,51 +30,51 @@ namespace Titan.API.Controllers
 
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("Confirmacion")]
-        public ActionResult<bool> ConfirmarUsuario(string email,int codigo)
+        public ActionResult<bool> ConfirmarUsuario(CodigoDTO codigo)
         {
-             return usuarioBL.Confirmar( email, codigo);
+             return usuarioBL.Confirmar( codigo.email, codigo.codigo);
            
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("ConfirmacionEmpresa")]
-        public ActionResult<bool> ConfirmarEmpresa(string email, int codigo)
+        public ActionResult<bool> ConfirmarEmpresa(CodigoDTO codigo)
         {
-            return empresaBL.Confirmar(email, codigo);
+            return empresaBL.Confirmar(codigo.email, codigo.codigo);
 
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("IniciarContrasenaEmpresa")]
-        public ActionResult<bool> IniciarContrasenaEmpresa(string email)
+        public ActionResult<bool> IniciarContrasenaEmpresa(InicioDTO inicio)
         {
-            return empresaBL.Iniciar(email);
+            return empresaBL.Iniciar(inicio.id);
 
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("IniciarContrasenaUsuario")]
-        public ActionResult<bool> IniciarContrasenaUsuario(string email)
+        public ActionResult<bool> IniciarContrasenaUsuario(InicioDTO inicio)
         {
-            return usuarioBL.Iniciar(email);
+            return usuarioBL.Iniciar(inicio.id);
 
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("CambiarContrasenaEmpresa")]
-        public ActionResult<bool> CambiarContrasenaEmpresa(string password, int codigo)
+        public ActionResult<bool> CambiarContrasenaEmpresa(CambioDTO cambio)
         {
-            return empresaBL.Cambiar(password,codigo);
+            return empresaBL.Cambiar(cambio.password,cambio.codigo);
 
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("CambiarContrasenaUsuario")]
-        public ActionResult<bool> CambiarContrasenaUsuario(string password, int codigo)
+        public ActionResult<bool> CambiarContrasenaUsuario(CambioDTO cambio)
         {
-            return usuarioBL.Cambiar(password, codigo);
+            return usuarioBL.Cambiar(cambio.password, cambio.codigo);
 
         }
 

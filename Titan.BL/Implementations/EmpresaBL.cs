@@ -85,13 +85,14 @@ namespace Titan.BL.Implementations
             return u;
         }
 
-        public bool Send(int id)
+        public bool Send(int id,int idempresa)
         {
 
             var u = loginRepository.Send(id);
+            var e = loginRepository.Obtain(idempresa);
             if(u != null)
             {
-                this.emailSender.Contact(u.Email);
+                this.emailSender.Contact(u.Email,e);
                 return true;
             }
             else
@@ -105,7 +106,7 @@ namespace Titan.BL.Implementations
             return loginRepository.Confirmar(email, codigo);
         }
 
-        public bool Iniciar(string email)
+        public bool Iniciar(int id)
         {
             Random num = new Random();
             int a = num.Next(1, 10);
@@ -114,11 +115,21 @@ namespace Titan.BL.Implementations
             int d = num.Next(1, 10);
             string codigo = a + "" + b + "" + c + "" + d;
 
-            this.emailSender.Contrasena(email, int.Parse(codigo));
+            
 
-            var u = loginRepository.Iniciar(email,int.Parse(codigo));
+            var u = loginRepository.Iniciar(id,int.Parse(codigo));
+            if (u != null)
+            {
+            this.emailSender.Contrasena(u.Email, int.Parse(codigo));
 
-            return u;
+            return true;
+            }
+            else
+            {
+            return false;
+            }
+
+
 
 
 
