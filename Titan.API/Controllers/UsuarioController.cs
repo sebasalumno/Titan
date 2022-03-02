@@ -58,6 +58,24 @@ namespace Titan.API.Controllers
 
         }
         [HttpPost]
+        [Route ("Actualizar")]
+
+        public ActionResult<bool> Update(UpdateUsuarioDTO update)
+        {
+             bool usuario = usuarioBL.Update(update);
+            if(usuario != false)
+            {
+                return Ok(usuario);
+
+            }
+            else
+            {
+                return Unauthorized();
+            }
+
+            
+        }
+        [HttpPost]
         [Route("Create")]
         /*
          * Este metodo inicia el proceso para crear un usuario e insertarlo en la base de datos

@@ -12,7 +12,7 @@ namespace Titan.DAL.Repositories.Contracts
         Usuario Obtain(Usuario usuario);
         List<Usuario> ObtainAll();
         bool Delete(Usuario usuario);
-        Usuario Update(Usuario usuario);
+        bool Update(Usuario usuario);
         bool Exist(Usuario u);
         Usuario GetId(string email);
         Usuario GetUser(int id);

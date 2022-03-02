@@ -123,5 +123,21 @@ namespace Titan.BL.Implementations
             password = passwordGenerator.Hash(password);
             return usuarioRepository.Cambiar(password, codigo);
         }
+
+        public bool Update(UpdateUsuarioDTO update)
+        {
+          var ej =  mapper.Map<UpdateUsuarioDTO, Usuario>(update);
+            usuarioRepository.Update(ej);
+            if(ej!= null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+               
+        }
     }
 } 

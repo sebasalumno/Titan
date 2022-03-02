@@ -22,7 +22,7 @@ namespace Titan.DAL.Repositories.Implementations
         public Usuario Login(Usuario usuario)
         {
             var u = _context.Usuarios.Include(u=>u.Provincia).FirstOrDefault(u => u.Email == usuario.Email && u.Password == usuario.Password);
-            if(u.Confirmado == true)
+            if(u.Confirmado == true && u != null)
             {
                 return u;
             }
@@ -75,11 +75,37 @@ namespace Titan.DAL.Repositories.Implementations
             return true;
         }
 
-        public Usuario Update(Usuario usuario)
+        public bool Update(Usuario usuario)
         {
-            var update = _context.Usuarios.Update(usuario);
+            var update = _context.Usuarios.FirstOrDefault(u => u.Id == usuario.Id);
+            if(usuario.Name != "")
+            {
+                update.Name = usuario.Name;
+            }
+            if (usuario.Username != "")
+            {
+                update.Username = usuario.Username;
+            }
+
+            if (usuario.Email != "")
+            {
+                update.Email = usuario.Email;
+            }
+            if(usuario.Localidad != "")
+            {
+                update.Localidad = usuario.Localidad;
+            }
+            if (usuario.ProvinciaId != 0)
+            {
+                update.ProvinciaId = usuario.ProvinciaId;
+            }
+            if (usuario.nota != 0)
+            {
+                update.nota = usuario.nota;
+            }
+
             _context.SaveChanges();
-            return update.Entity;
+            return true;
         }
 
         public Usuario GetId(string email)

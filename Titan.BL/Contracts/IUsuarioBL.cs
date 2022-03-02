@@ -16,5 +16,7 @@ namespace Titan.BL.Contracts
         public bool Iniciar(int id);
         public bool Cambiar(string password, int codigo);
 
+        public bool Update(UpdateUsuarioDTO update);
+
     }
 }

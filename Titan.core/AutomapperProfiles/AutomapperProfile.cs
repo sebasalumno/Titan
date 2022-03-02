@@ -12,6 +12,8 @@ namespace Titan.Core.AutomapperProfiles
             public AutomapperProfile()
         {
             CreateMap<UsuarioDTO, Usuario>();
+            CreateMap<UpdateUsuarioDTO, Usuario>();
+            CreateMap<Usuario, UpdateUsuarioDTO>();
             CreateMap<Usuario, UsuarioDTO>();
             CreateMap<EmpresaDTO, Empresa>();
             CreateMap<Empresa, EmpresaDTO>();
