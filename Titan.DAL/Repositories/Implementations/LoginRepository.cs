@@ -20,7 +20,10 @@ namespace Titan.DAL.Repositories.Implementations
 
         public Empresa Login(Empresa empresa)
         {
+            
             var e = _context.Empresas.FirstOrDefault(u => u.Email == empresa.Email && u.Password == empresa.Password);
+            if(e != null)
+            {
             if (e.Confirmado == true)
             {
                 return e;
@@ -29,9 +32,28 @@ namespace Titan.DAL.Repositories.Implementations
             {
                 return null;
             }
+            }
+            else
+            {
+                return e;
+            }
+
 
            
 
+        }
+
+        public Empresa GetId(Empresa empresa)
+        {
+            var ids = _context.Empresas.FirstOrDefault(u => u.Email == empresa.Email);
+            if(ids != null)
+            {
+                return ids;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public Empresa Create(Empresa empresa,int codigo)
@@ -162,5 +184,7 @@ namespace Titan.DAL.Repositories.Implementations
 
                  }
         }
+
+
     }
 }

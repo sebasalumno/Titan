@@ -141,6 +141,28 @@ namespace Titan.BL.Implementations
             password = passwordGenerator.Hash(password);
             return loginRepository.Cambiar(password,codigo);
         }
+
+        public EmpresaDTO GetId(LoginDTO loginDTO)
+        {
+            var empresa = mapper.Map<LoginDTO, Empresa>(loginDTO);
+
+            if (loginRepository.Exist(empresa))
+            {
+                var a = loginRepository.GetId(empresa);
+
+                var u = mapper.Map<Empresa, EmpresaDTO>(a);
+                u.Password = null;
+
+                return u;
+
+            }
+            else
+            {
+                return null;
+            }
+
+
+        }
     }
     
 }

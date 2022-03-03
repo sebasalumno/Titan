@@ -73,6 +73,29 @@ namespace Titan.API.Controllers
             var empresa = LoginBL.Obtain(id);
             return empresa;
         }
+
+        [HttpPost]
+        [Route("GetId")]
+        public ActionResult<EmpresaDTO> GetId(LoginDTO loginDTO)
+        {
+            EmpresaDTO empresa;
+
+            if ((empresa = LoginBL.GetId(loginDTO)) != null)
+            {
+                var u = mapper.Map<EmpresaDTO, Empresa>(empresa);
+
+                return Ok(empresa);
+            }
+            else
+            {
+                return Unauthorized();
+            }
+
+
+
+
+        }
+
         [HttpPost]
         [Route("Send")]
         public ActionResult<bool> Send(SendDTO send)
