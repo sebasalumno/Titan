@@ -2,10 +2,14 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Stripe;
+using Stripe.Checkout;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Titan.BL.Contracts;
+using Titan.Core.DTO;
 
 namespace Titan.API.Controllers
 {
@@ -13,6 +17,15 @@ namespace Titan.API.Controllers
     [ApiController]
     public class SusripcionesController : ControllerBase
     {
+        public IContratoBL contratoBL { get; set; }
+
+        public IPaymentBL paymentBL { get; set; }
+
+        public SusripcionesController(IContratoBL contratoBL)
+        {
+            this.contratoBL = contratoBL;
+
+        }
         [HttpPost]
         [AllowAnonymous]
         public ActionResult<string> CrearPago(ContratoDTO contratoDTO)
@@ -35,18 +48,9 @@ namespace Titan.API.Controllers
                       Quantity = 1,
                     },
                   },
-                Customer = contratoDTO.Empresa.StripeId,
-                SubscriptionData = new SessionSubscriptionDataOptions
-                {
-                    TrialEnd = DateTimeOffset.FromUnixTimeSeconds(long.Parse(Configuration["TrialLimitTimeStamp"])).UtcDateTime, //Esto es si queréis ponerles un tiempo de prueba         
-                }
+                Customer = contratoDTO.Empresa.StripeId
             };
 
-            //Días sin poder registrar el TRIAL, le restamos 120 segundos para que no coincida con justo el límite
-            if (DateTime.Now > DateTimeOffset.FromUnixTimeSeconds(long.Parse(Configuration["TrialLimitTimeStamp"]) - 120).UtcDateTime.AddDays(-2))
-            {
-                options.SubscriptionData = null;
-            }
 
             var service = new SessionService();
             var session = service.Create(options);

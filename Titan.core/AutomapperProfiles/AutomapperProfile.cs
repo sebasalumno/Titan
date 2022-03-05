@@ -39,6 +39,11 @@ namespace Titan.Core.AutomapperProfiles
             CreateMap<OfferEmpresa, OfertaCicloDTO>();
             CreateMap<OfferEmpresa, OfferEmpresaDTO>();
             CreateMap<OfferEmpresaDTO, OfferEmpresa>();
+            CreateMap<MensajeDTO, Mensaje>();
+            CreateMap<Mensaje, MensajeDTO>();
+            CreateMap<ContratoDTO, Contrato>();
+            CreateMap<Contrato, ContratoDTO>();
+            
 
 
         }

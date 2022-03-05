@@ -20,6 +20,7 @@ namespace Titan.DAL.Entities
         public DbSet<Confirmacion> Confirmaciones { get; set; }
 
         public DbSet<ConfirmacionE> ConfirmacionesE { get; set; }
+        public DbSet<Mensaje> Mensajes { get; set; }
 
         public pitufoContext()
         {

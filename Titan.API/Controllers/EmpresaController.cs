@@ -102,5 +102,11 @@ namespace Titan.API.Controllers
         {
             return LoginBL.Send(send.id,send.idempresa);
         }
+        [HttpPost]
+        [Route("Contact")]
+        public ActionResult<bool> Contact(MensajeDTO mensaje)
+        {
+            return LoginBL.Contact(mensaje);
+        }
     }
 }

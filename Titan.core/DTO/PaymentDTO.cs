@@ -6,5 +6,6 @@ namespace Titan.Core.DTO
 {
     public class PaymentDTO
     {
+        public string Url { get; set; }
     }
 }

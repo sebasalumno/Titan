@@ -141,6 +141,11 @@ namespace Titan.API
 
             services.AddScoped<IEmailSender, EmailSender>();
 
+            services.AddScoped<IPaymentBL, PaymentBL>();
+
+            services.AddScoped<IContratoBL, ContratoBL>();
+            services.AddScoped<IMessageRepository, MessageRepository>();
+
 
             services.AddDbContext<pitufoContext>(opts => opts.UseMySql(Configuration["ConnectionString:PitufoDB"],
                 ServerVersion.AutoDetect(Configuration["ConnectionString:PitufoDB"])));

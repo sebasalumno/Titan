@@ -11,6 +11,7 @@ namespace Titan.BL.Contracts
         public EmpresaDTO GetId(LoginDTO loginDTO);
         public EmpresaCreateDTO Create(EmpresaCreateDTO empresaDTO);
         public EmpresaGetDTO Obtain(int number);
+        public bool Contact(MensajeDTO mensaje);
         public bool Send(int id,int idempresa);
         public bool Confirmar(string email, int codigo);
         public bool Iniciar(int id);

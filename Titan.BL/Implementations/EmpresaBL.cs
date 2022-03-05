@@ -17,15 +17,17 @@ namespace Titan.BL.Implementations
         public IPasswordGenerator passwordGenerator { get; set; }
 
         public ILoginRepository loginRepository { get; set; }
+        public IMessageRepository messageRepository { get; set; }
         public IMapper mapper { get; set; }
         public IEmailSender emailSender { get; set; }
 
-        public EmpresaBL(ILoginRepository loginRepository, IPasswordGenerator passwordGenerator, IMapper mapper, IEmailSender emailSender)
+        public EmpresaBL(ILoginRepository loginRepository, IPasswordGenerator passwordGenerator, IMapper mapper, IEmailSender emailSender, IMessageRepository messageRepository)
         {
             this.loginRepository = loginRepository;
             this.passwordGenerator = passwordGenerator;
             this.mapper = mapper;
             this.emailSender = emailSender;
+            this.messageRepository = messageRepository;
         }
 
         public EmpresaCreateDTO Create(EmpresaCreateDTO loginDTO)
@@ -162,6 +164,11 @@ namespace Titan.BL.Implementations
             }
 
 
+        }
+
+        public bool Contact(MensajeDTO mensaje)
+        {
+            return messageRepository.Contact(mapper.Map<MensajeDTO, Mensaje>(mensaje));
         }
     }
     
