@@ -17,6 +17,7 @@ namespace Titan.BL.Contracts
         public bool Cambiar(string password, int codigo);
 
         public bool Update(UpdateUsuarioDTO update);
+        public List<MensajeDTO> GetMessage(int id);
 
     }
 }

@@ -139,5 +139,10 @@ namespace Titan.BL.Implementations
 
                
         }
+
+        public List<MensajeDTO> GetMessage(int id)
+        {
+            return mapper.Map<List<Mensaje>,List<MensajeDTO>>(usuarioRepository.GetMessage(id));
+        }
     }
 } 

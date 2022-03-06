@@ -115,5 +115,15 @@ namespace Titan.API.Controllers
         {
             return usuarioBL.GetUser(id);
         }
+
+        [HttpGet]
+        [Route("GetMessage")]
+        /*
+         * Este metodo se encargará de devolver el id al que pertenece un email
+         */
+        public ActionResult<List<MensajeDTO>> GetMessage(int id)
+        {
+            return usuarioBL.GetMessage(id);
+        }
     }
 }

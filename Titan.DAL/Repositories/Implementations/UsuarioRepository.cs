@@ -185,5 +185,15 @@ namespace Titan.DAL.Repositories.Implementations
             }
         }
 
+        public List<Mensaje> GetMessage(int id)
+        {
+            var u = _context.Mensajes.Where(m => m.UsuarioId == id).ToList();
+            if (u == null)
+            {
+                return null;
+
+            }
+            return u;
         }
+    }
 }
