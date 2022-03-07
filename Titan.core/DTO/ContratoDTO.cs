@@ -8,7 +8,12 @@ namespace Titan.Core.DTO
     public class ContratoDTO
     {
         //idsuscripcion
+        public int id { get; set; }
+        public EmpresaDTO Empresa { get; set; }
+        public int EmpresaId { get; set; }
+        public DateTime FechaAlta { get; set; }
+        public int ContratoEstadoId { get; set; }
         public string StripeId { get; set; }
-        public Empresa Empresa { get; set; }
+
     }
 }

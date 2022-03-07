@@ -15,13 +15,13 @@ namespace Titan.API.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class SusripcionesController : ControllerBase
+    public class SuscripcionesController : ControllerBase
     {
         public IContratoBL contratoBL { get; set; }
 
         public IPaymentBL paymentBL { get; set; }
 
-        public SusripcionesController(IContratoBL contratoBL)
+        public SuscripcionesController(IContratoBL contratoBL)
         {
             this.contratoBL = contratoBL;
 
@@ -43,7 +43,7 @@ namespace Titan.API.Controllers
                   {
                     new SessionLineItemOptions
                     {
-                      Price = contratoDTO.StripeId, //Tu priceID
+                      Price = "price_1KZHVUDeoKxXT0FVZ1RFcWnG", //Tu priceID
                       // For metered billing, do not pass quantity
                       Quantity = 1,
                     },
@@ -72,6 +72,7 @@ namespace Titan.API.Controllers
                 if (stripeEvent.Type == Events.InvoicePaid)
                 {
                     var invoice = stripeEvent.Data.Object as Invoice;
+                    
                     paymentBL.PagoSuccess(invoice);
                 }
                 else if (stripeEvent.Type == Events.CustomerSubscriptionCreated)

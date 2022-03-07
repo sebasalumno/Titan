@@ -14,7 +14,7 @@ using Titan.DAL.Entities;
 
 namespace Titan.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     [AllowAnonymous]
     public class UsuarioController : ControllerBase

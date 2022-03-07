@@ -21,6 +21,10 @@ namespace Titan.DAL.Entities
 
         public DbSet<ConfirmacionE> ConfirmacionesE { get; set; }
         public DbSet<Mensaje> Mensajes { get; set; }
+        public DbSet<Factura> Facturas { get; set; }
+        public DbSet<Contrato> Contratos { get; set; }
+        public DbSet<ContratoEstado> ContratoEstados { get; set; }
+        public DbSet<Rol> Roles { get; set; }
 
         public pitufoContext()
         {

@@ -17,7 +17,7 @@ namespace Titan.Core.DTO
         public String Direccion { get; set; }
         public String Password { get; set; }
         public int RolId { get; set; }
-        public int StripeId { get; set; } 
+        public string StripeId { get; set; } 
 
     }
 }

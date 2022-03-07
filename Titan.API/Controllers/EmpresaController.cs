@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Stripe;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,22 +13,26 @@ using Titan.BL.Implementations;
 using Titan.Core.DTO;
 using Titan.Core.Security;
 using Titan.DAL.Entities;
+using Titan.DAL.Repositories.Contracts;
 
 namespace Titan.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     [AllowAnonymous]
     public class EmpresaController : ControllerBase
     {
         public IMapper mapper { get; set; }
         public IEmpresaBL LoginBL { get; set; }
+
+
         public IJwtBearer JwtBearer { get; set; }
         public EmpresaController(IEmpresaBL empresaBL, IJwtBearer jwtBearer, IMapper mapper)
         {
             this.LoginBL = empresaBL;
             this.JwtBearer = jwtBearer;
             this.mapper = mapper;
+
         }
 
         [HttpPost]
@@ -65,6 +71,7 @@ namespace Titan.API.Controllers
                 return BadRequest();
             }
         }
+        
 
         [HttpGet]
         [Route("Get")]

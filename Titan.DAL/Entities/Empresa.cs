@@ -22,8 +22,6 @@ namespace Titan.DAL.Entities
 
         public int RolId { get; set; }
         [ForeignKey("RolId")]
-        //Todavia no esta creada la tabla asi que la migracion de mensaje no la ha vinculado.
-        //Mirar en el txt guardado.
         public Rol Rol { get; set; }
         public string StripeId { get; set; }
 

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Titan.DAL.Entities
 {
-    public class Facturas
+    public class Factura
     {
         public int Id { get; set; }
         public DateTime FechaCreacion { get; set; }
@@ -15,7 +15,7 @@ namespace Titan.DAL.Entities
         public Empresa Empresa { get; set; }
         public int StripePriceId { get; set; }
         public int ContratoId{get;set;}
-        [ForeignKey("ContratoID")]
+        [ForeignKey("ContratoId")]
         public Contrato Contrato { get; set; }
     }
 }

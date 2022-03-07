@@ -80,6 +80,20 @@ namespace Titan.DAL.Migrations
                 name: "IX_Mensajes_UsuarioId",
                 table: "Mensajes",
                 column: "UsuarioId");
+            migrationBuilder.CreateIndex(
+                name: "IX_Empresas_RolId",
+                table: "Empresas",
+                column: "RolId");
+
+
+
+            migrationBuilder.AddForeignKey(
+               name: "FK_Empresas_Rol_RolId",
+               table: "Empresas",
+               column: "RolId",
+               principalTable: "Rol",
+               principalColumn: "Id",
+               onDelete: ReferentialAction.Cascade);
 
 
         }

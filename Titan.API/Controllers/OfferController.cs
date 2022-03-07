@@ -11,7 +11,7 @@ using Titan.Core.DTO;
 
 namespace Titan.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     [Authorize]
     public class OfferController : ControllerBase
