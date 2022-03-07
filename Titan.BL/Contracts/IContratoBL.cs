@@ -7,6 +7,6 @@ namespace Titan.BL.Contracts
 {
     public interface IContratoBL
     {
-        
+        public ContratoDTO Stripe();
     }
 }

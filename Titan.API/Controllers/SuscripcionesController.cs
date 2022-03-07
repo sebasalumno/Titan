@@ -21,9 +21,10 @@ namespace Titan.API.Controllers
 
         public IPaymentBL paymentBL { get; set; }
 
-        public SuscripcionesController(IContratoBL contratoBL)
+        public SuscripcionesController(IContratoBL contratoBL, IPaymentBL paymentBL)
         {
             this.contratoBL = contratoBL;
+            this.paymentBL = paymentBL;
 
         }
         [HttpPost]
@@ -71,6 +72,7 @@ namespace Titan.API.Controllers
 
                 if (stripeEvent.Type == Events.InvoicePaid)
                 {
+                    contratoBL.Stripe();
                     var invoice = stripeEvent.Data.Object as Invoice;
                     
                     paymentBL.PagoSuccess(invoice);
@@ -82,6 +84,8 @@ namespace Titan.API.Controllers
                 }
                 else if (stripeEvent.Type == Events.PaymentIntentSucceeded)
                 {
+
+
                     var paymentIntent = stripeEvent.Data.Object as PaymentIntent;
                     paymentBL.PosiblePagoCancelacion(paymentIntent);
                 }

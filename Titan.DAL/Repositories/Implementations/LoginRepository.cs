@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Stripe;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -183,6 +184,75 @@ namespace Titan.DAL.Repositories.Implementations
 
 
                  }
+        }
+
+        public string PagoSuccess(Invoice invoice)
+        {
+            var empresa = _context.Empresas.FirstOrDefault(e => e.StripeId.Equals(invoice.CustomerId));
+
+            Contrato con = new Contrato
+            {
+                EmpresaId = empresa.Id,
+                FechaAlta = DateTime.Now,
+                FechaBaja = DateTime.Now.AddDays(30),
+                ContratoEstadoId = 1,
+                StripeId = invoice.CustomerId
+
+            };
+            _context.Contratos.Add(con);
+            _context.SaveChanges();
+            Factura fac = new Factura
+            {
+                FechaCreacion = DateTime.Now,
+                FechaPago = DateTime.Now,
+                EmpresaId = empresa.Id,
+                StripePriceId = "price_1KZHVUDeoKxXT0FVZ1RFcWnG",
+                ContratoId = con.Id,
+            };
+            _context.Facturas.Add(fac);
+            _context.SaveChanges();
+            empresa.RolId = 2;
+            _context.Empresas.Update(empresa);
+            _context.SaveChanges();
+            return "Se ha realizado la compra de manera correcta";
+            
+        }
+
+        public Empresa Get(String stripeId)
+        {
+            var empresa = _context.Empresas.FirstOrDefault(p => p.StripeId == stripeId);
+            return empresa;
+        }
+
+        public string PosiblePagoCancelacion(PaymentIntent paymentIntent)
+        {
+            var empresa = _context.Empresas.FirstOrDefault(e => e.StripeId.Equals(paymentIntent.CustomerId));
+
+            Contrato con = new Contrato
+            {
+                EmpresaId = empresa.Id,
+                FechaAlta = DateTime.Now,
+                FechaBaja = DateTime.Now.AddDays(30),
+                ContratoEstadoId = 1,
+                StripeId = paymentIntent.CustomerId
+
+            };
+            _context.Contratos.Add(con);
+            _context.SaveChanges();
+            Factura fac = new Factura
+            {
+                FechaCreacion = DateTime.Now,
+                FechaPago = DateTime.Now,
+                EmpresaId = empresa.Id,
+                StripePriceId = "price_1KZHVUDeoKxXT0FVZ1RFcWnG",
+                ContratoId = con.Id,
+            };
+            _context.Facturas.Add(fac);
+            _context.SaveChanges();
+            empresa.RolId = 3;
+            _context.Empresas.Update(empresa);
+            _context.SaveChanges();
+            return "Se esta procesando";
         }
 
 

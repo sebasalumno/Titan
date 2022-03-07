@@ -1,10 +1,13 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using AutoMapper;
+using Microsoft.Extensions.Configuration;
 using Stripe;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Titan.BL.Contracts;
 using Titan.Core.DTO;
+using Titan.DAL.Entities;
 using Titan.DAL.Repositories.Contracts;
 
 namespace Titan.BL.Implementations
@@ -12,39 +15,44 @@ namespace Titan.BL.Implementations
     public class ContratoBL : IContratoBL
     {
         public IConfiguration Configuration { get; set; }
+        public IMapper mapper { get; set; }
 
         public ILoginRepository empresaRepository { get; set; }
-        public ContratoBL(IConfiguration Configuration, ILoginRepository empresaRepository)
+        public IContratoRepository contratoRepository { get; set; }
+        public ContratoBL(IConfiguration Configuration, ILoginRepository empresaRepository, IMapper mapper)
         {
             this.Configuration = Configuration;
             this.empresaRepository = empresaRepository;
+            this.mapper = mapper;
         }
 
- /*       public async Task<ContratoDTO> Baja(int empresaId) {
+        public async Task<ContratoDTO> Baja(int empresaId)
+        {
             StripeConfiguration.ApiKey = Configuration["StripeSecretkey"];
             var empresa = empresaRepository.Obtain(empresaId);
             if (empresa != null)
             {
-                var contrato = _ContratoRepository.Get(empresaId, true);
-                contrato.ContratoEstadoID = _ContratoRepository.GetEstados().FirstorDefault(e => e.Codigo == "INACTIVO").Id;
+                var contrato = contratoRepository.Get(empresaId);
+                
 
                 if (contrato != null)
                 {
+                    
                     var service = new SubscriptionService();
-                    service.Cancel(contrato.SubscriptionStripeId);
+                    service.Cancel(contrato.StripeId);
                 }
-                ContratoRepository.Update(contrato);
+                contratoRepository.Update(contrato);
 
-                return _mapper.Map<Contrato, ContratoDTO>(_ContratoRepository.Baja(empresaId));
+                return mapper.Map<Contrato, ContratoDTO>(contratoRepository.Baja(empresaId));
 
             }
-            
-            return null;
-        }*/
 
-        private ContratoDTO Stripe(ContratoDTO contrato)
+            return null;
+        }
+
+        public ContratoDTO Stripe(ContratoDTO contrato)
         {
-            PriceCreateOptions optionsPrice;
+            //PriceCreateOptions optionsPrice;
             StripeConfiguration.ApiKey = Configuration["StripeSecretKey"];
             var empresa = empresaRepository.Obtain(contrato.EmpresaId);
             if (empresa.StripeId == null)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Stripe;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Titan.DAL.Entities;
@@ -20,5 +21,10 @@ namespace Titan.DAL.Repositories.Contracts
         Empresa Iniciar(int id,int codigo);
 
         bool Cambiar(string password, int codigo);
+        Empresa Get(String stripeId);
+        string PosiblePagoCancelacion(PaymentIntent paymentIntent);
+
+        string PagoSuccess(Invoice invoice);
+        
     }
 }

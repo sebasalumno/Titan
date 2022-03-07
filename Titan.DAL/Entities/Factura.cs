@@ -13,7 +13,7 @@ namespace Titan.DAL.Entities
         public int EmpresaId { get; set; }
         [ForeignKey("EmpresaId")]
         public Empresa Empresa { get; set; }
-        public int StripePriceId { get; set; }
+        public string StripePriceId { get; set; }
         public int ContratoId{get;set;}
         [ForeignKey("ContratoId")]
         public Contrato Contrato { get; set; }

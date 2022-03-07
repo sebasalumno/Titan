@@ -81,7 +81,7 @@ namespace Titan.DAL.Migrations
                     FechaAlta = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     FechaBaja = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     ContratoEstadoId = table.Column<int>(type: "int", nullable: false),
-                    StripeId = table.Column<int>(type: "int", nullable: false)
+                    StripeId = table.Column<int>(type: "longtext", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -105,7 +105,7 @@ namespace Titan.DAL.Migrations
                     FechaCreacion = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     FechaPago = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     EmpresaId = table.Column<int>(type: "int", nullable: false),
-                    StripePriceId = table.Column<int>(type: "int", nullable: false),
+                    StripePriceId = table.Column<int>(type: "longtext", nullable: false),
                     ContratoId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

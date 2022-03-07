@@ -12,7 +12,7 @@ namespace Titan.DAL.Migrations
                 table: "Empresas",
                 type: "int",
                 nullable: false,
-                defaultValue: 0);
+                defaultValue: 1);
 
             migrationBuilder.AddColumn<string>(
                 name: "StripeId",
