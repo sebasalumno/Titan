@@ -72,9 +72,11 @@ namespace Titan.API.Controllers
 
                 if (stripeEvent.Type == Events.InvoicePaid)
                 {
-                    contratoBL.Stripe();
-                    var invoice = stripeEvent.Data.Object as Invoice;
                     
+                    var invoice = stripeEvent.Data.Object as Invoice;
+
+                    
+
                     paymentBL.PagoSuccess(invoice);
                 }
                 else if (stripeEvent.Type == Events.CustomerSubscriptionCreated)

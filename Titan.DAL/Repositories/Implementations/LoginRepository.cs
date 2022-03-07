@@ -60,6 +60,8 @@ namespace Titan.DAL.Repositories.Implementations
         public Empresa Create(Empresa empresa,int codigo)
         {
             empresa.Confirmado = false;
+            empresa.RolId = 1;
+            
             var u = _context.Empresas.Add(empresa);
             _context.SaveChanges();
 

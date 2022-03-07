@@ -7,7 +7,7 @@ using Titan.DAL.Repositories.Contracts;
 
 namespace Titan.DAL.Repositories.Implementations
 {
-    class ContratoRepository : IContratoRepository
+   public class ContratoRepository : IContratoRepository
     {
 
         public pitufoContext _context { get; set; }

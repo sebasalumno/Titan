@@ -67,24 +67,26 @@ namespace Titan.BL.Implementations
                 empresaRepository.Update(empresa);
 
             }
-/*
-            optionsPrice = new PriceCreateOptions
-            {
-                Product = Configuration["StripeProductId"],
-                UnitAmount = (999),
-                Currency = "eur",
-                Recurring = new PriceRecurringOptions
-                {
-                    Interval = "month",
-                },
+            /*
+                        optionsPrice = new PriceCreateOptions
+                        {
+                            Product = Configuration["StripeProductId"],
+                            UnitAmount = (999),
+                            Currency = "eur",
+                            Recurring = new PriceRecurringOptions
+                            {
+                                Interval = "month",
+                            },
 
-            };
-            var servicePrice = new PriceService();
-            var price = servicePrice.Create(optionsPrice);
-            contrato.StripeId = price.Id;
-            //contrato.Empresa = mapper<>*/
+                        };
+                        var servicePrice = new PriceService();
+                        var price = servicePrice.Create(optionsPrice);*/
+            contrato.StripeId = "price_1KZHVUDeoKxXT0FVZ1RFcWnG";
+            //contrato.Empresa = mapper<>
 
             return contrato;
         }
+
+
     }
 }
